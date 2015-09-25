@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Review</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <h4>Results for <%= results.stats.quiz.uname %></h4>
+  <p>Score in the <%= results.stats.quiz.name %> test:</p>
+  <ul>
+    <li>Questions given: <%= results.stats.total %></li>
+    <li>Pass percentage required: <%= results.stats.quiz.perc %>%</li>
+    <li>Questions that don't require grading: <%= results.stats.ungraded %></li>
+
+    <li>Correctly answered: <%= results.stats.correct %> questions</li>
+    <li>Pass percentage obtained: <%= results.stats.perc %>%</li>
+    <li>Questions that require human intervention: <%= results.stats.unevaluated.length %></li>
+    <li>Is grade final? <% if(results.stats.unevaluated.length) { %>No<% } else { %>Yes<%}%></li>
+    <li>Test result: <% if(results.stats.pass) { %>Success<% } else { %>Failed<%}%></li>
+  </ul>
+</body>
+</html>

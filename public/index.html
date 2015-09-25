@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+
+  <link href="/css/bootstrap.min.css" rel="stylesheet" />
+  <style type="text/css">
+    .antique { background: #FAEBD7; }
+    .container .jumbotron { margin-bottom: 0; border-radius: 0; }
+    .row { margin: 0; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Node Quizzer Demo</h1>
+      <p>Take a quiz or generate one for somebody</p>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h4 class="text-center">Start Quiz</h4>
+        <form class="form-horizontal" role="form" action="/quiz" method="get" onsubmit="return submitForm(this)">
+          <div class="form-group">
+            <label class="control-label col-sm-3">Full Name:</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" name="fullname" placeholder="Full Name" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Email:</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="email" name="email" placeholder="Email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Questions:</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="number" name="count" placeholder="How many questions" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Minutes:</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="number" name="time" placeholder="How many minutes" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Min Perc:</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="number" name="perc" placeholder="Acceptance percentage" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Quiz</label>
+            <div class="col-sm-9">
+              <select class="form-control" name="quiz" required>
+                <% _.each(availableQuizzes, function(category) { %>
+                <option value="<%= category %>"><%= category %></option>
+                <% }); %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group text-right">
+            <button type="submit" class="btn btn-default" value="start" onclick="return setSubmit(this)">Start Quiz</button>
+            <button type="submit" class="btn btn-default" value="generate" onclick="return setSubmit(this)">Generate Quiz Token</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript">
+
+    var submitName;
+    function submitForm(form) {
+      var $form = $('form');
+      if (submitName == "start") {
+        $form.attr('action', '/quiz').submit();
+      } else if (submitName == "generate") {
+        $form.attr('action', '/tokenize').submit();
+      }
+
+      return false;
+    }
+
+    function setSubmit(button) {
+      submitName = button.value;
+    }
+
+  </script>
+</body>
+</html>

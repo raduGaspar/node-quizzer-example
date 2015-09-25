@@ -1,0 +1,11 @@
+.impress-enabled .step { opacity: 0; }
+input[type='text'] { width: 100%; }
+textarea { resize: none; width: 100%; }
+.stats { background: #aaa; padding: 10px; font-weight: bold; text-align: center; }
+.impress-enabled .slide { font-size: 1.2em; font-weight: normal; line-height: initial; }
+.impress-enabled .slide h4 { font-size: 1.4em; font-weight: bold; margin: 0 0 10px 0; }
+.impress-enabled .slide p { font-size: 1.1em; }
+.impress-enabled .slide pre { font-size: 1em; font-family: monospace,monospace; }
+.impress-enabled .slide li { margin-bottom: 10px; }
+.impress-enabled .slide.center { text-align: center; }
+.not-graded { position: absolute; top: 12px; left: 0; border-radius: 0 5px 5px 0; }

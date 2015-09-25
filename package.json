@@ -1,0 +1,17 @@
+{
+  "name": "quizz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.3",
+    "node-quizzer": "^2.0.1",
+    "underscore-node": "^0.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Radu B. Gaspar <radu.bogdan.gaspar@gmail.com>",
+  "license": "ISC"
+}
