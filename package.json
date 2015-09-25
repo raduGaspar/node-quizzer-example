@@ -5,7 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "express": "^4.13.3",
-    "node-quizzer": "^2.0.3",
+    "node-quizzer": "^2.0.4",
     "underscore-node": "^0.1.2"
   },
   "devDependencies": {},
