@@ -29,7 +29,7 @@ app.get('/quiz', function(req, res) {
     query = urlParts.query,
 
     // generate random quiz
-    quiz = quizzer.generate(query.quiz, {
+    quiz = quizzer.generate({
       uname: query.fullname,
       uemail: query.email,
       name: query.quiz,
@@ -53,7 +53,7 @@ app.get('/tokenize', function(req, res) {
     query = urlParts.query,
 
     // generate quiz token
-    quiz = quizzer.tokenize(query.quiz, {
+    quiz = quizzer.tokenize({
       uname: query.fullname,
       uemail: query.email,
       name: query.quiz,
