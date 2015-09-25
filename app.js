@@ -5,7 +5,23 @@ var
   path = require('path'),
   app = express(),
   quizzer = require('node-quizzer'),
-  _ = require('underscore-node');
+  _ = require('underscore-node'),
+  getQuiz = function(method, req) {
+    var urlParts = url.parse(req.url, true),
+      query = urlParts.query,
+
+      // generate random quiz
+      quiz = quizzer[method]({
+        uname: query.fullname,
+        uemail: query.email,
+        name: query.quiz,
+        count: parseInt(query.count),
+        time: parseInt(query.time),
+        perc: parseInt(query.perc)
+      });
+
+    return quiz;
+  };
 
 
 app.get('/', function(req, res) {
@@ -25,18 +41,7 @@ app.get('/', function(req, res) {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/quiz', function(req, res) {
-  var urlParts = url.parse(req.url, true),
-    query = urlParts.query,
-
-    // generate random quiz
-    quiz = quizzer.generate({
-      uname: query.fullname,
-      uemail: query.email,
-      name: query.quiz,
-      count: parseInt(query.count),
-      time: parseInt(query.time),
-      perc: parseInt(query.perc)
-    });
+  var quiz = getQuiz('generate', req);
 
   // load the quiz.html template
   fs.readFile(__dirname + '/public/quiz.html', function(err, data) {
@@ -49,20 +54,8 @@ app.get('/quiz', function(req, res) {
 });
 
 app.get('/tokenize', function(req, res) {
-  var urlParts = url.parse(req.url, true),
-    query = urlParts.query,
-
-    // generate quiz token
-    quiz = quizzer.tokenize({
-      uname: query.fullname,
-      uemail: query.email,
-      name: query.quiz,
-      count: parseInt(query.count),
-      time: parseInt(query.time),
-      perc: parseInt(query.perc)
-    });
-
-  var tokenUrl = req.protocol + '://' + req.get('host') + "/quiz/" + quiz.quid;
+  var quiz = getQuiz('tokenize', req),
+    tokenUrl = req.protocol + '://' + req.get('host') + "/quiz/" + quiz.quid;
 
   res.set('Content-Type', 'text/plain');
   res.send(tokenUrl);
