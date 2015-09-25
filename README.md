@@ -5,4 +5,4 @@
 - run `node app.js` to start the server
 - enjoy
 
-[node-quizzer|https://www.npmjs.com/package/node-quizzer]
+[node-quizzer](https://www.npmjs.com/package/node-quizzer)
